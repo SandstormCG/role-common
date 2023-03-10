@@ -1,0 +1,24 @@
+- name: Install syncthing
+  package:
+    name: syncthing
+    state: present
+  become: yes
+
+- name: Start syncthing as user to generate initial config
+  systemd:
+    name: syncthing
+    state: started
+    scope: user
+
+- name: Give time to syncthing to start
+  pause:
+    seconds: 10
+
+- name: Add devices
+  shell: syncthing cli config devices add --device-id {{ st_device.sid }} --name {{ st_device.name }}
+
+- name: Stop syncthing
+  systemd:
+    name: syncthing
+    state: stopped
+    scope: user

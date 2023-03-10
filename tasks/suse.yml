@@ -1,0 +1,26 @@
+- name: Create bin and installers directory
+  file:
+    path: "/home/{{ user }}/bin/installers"
+    state: directory
+
+- name: Set a hostname
+  hostname:
+    name: "{{ ansible_host }}"
+
+- name: Create group for the user with same name (compat)
+  group:
+    name: "{{ user }}"
+    state: present
+  become: yes
+
+- name: Add user to secondary group without being removed from the others
+  group:
+    name: "{{ user }}"
+    groups: "{{ user }}"
+    append: yes
+  become: yes
+
+
+
+
+

@@ -1,0 +1,23 @@
+---
+# tasks file for common
+- name: Common configs for suse based distros
+  include_tasks: suse.yml
+  when: distro=="tw" or distro=="leap"
+
+- name: Install zerotier
+  include_tasks: zerotier/main.yml
+
+- name: Upgrade system
+  include_tasks: upgrade/main.yml
+
+- name: Remove snaps
+  include_tasks: fsnaps.yml
+  when: distro=="neon" or distro=="ub"
+
+- name: Install syncthing
+  include_tasks: syncthing.yml
+  when: not st_inst.stat.exists
+
+- name: Install zsh
+  include_tasks: zsh.yml
+

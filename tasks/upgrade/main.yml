@@ -1,0 +1,15 @@
+- name: Upgrade for arch
+  include_tasks: upgrade/arch.yml
+  when: distro=="arch"
+
+- name: Upgrade for neon
+  include_tasks: upgrade/neon.yml
+  when: distro=="neon"
+
+- name: Upgrade for OpenSuSe distros
+  include_tasks: upgrade/tw.yml
+  when: distro=="tw" or distro=="leap"
+ 
+- name: Upgrade for ubuntu server
+  include_tasks: upgrade/ub.yml
+  when: distro=="ub"
