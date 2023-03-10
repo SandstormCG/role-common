@@ -43,7 +43,8 @@
 - name: If you forgot to execute gim after grub update
   lineinfile:
     path: /home/{{ user }}/.zshrc
-    line: alias regkrn="sudo mkinitcpio -P"
+    #line: alias regkrn="sudo mkinitcpio -P"
+    line: alias regkrn="sudo dracut-rebuild"
     create: yes
   become: no
   when: distro=="arch" 
