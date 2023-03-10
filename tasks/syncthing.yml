@@ -4,6 +4,12 @@
     state: present
   become: yes
 
+- name: Generate syncthing user service
+  template:
+    src: syncthing.j2
+    dest: /home/{{ user }}/.config/systemd/user/syncthing.service
+    force: yes
+
 - name: Start syncthing as user to generate initial config
   systemd:
     name: syncthing
@@ -22,3 +28,5 @@
     name: syncthing
     state: stopped
     scope: user
+  when: distro=="arch" or distro=="tw" or distro=="neon"
+  

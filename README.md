@@ -14,6 +14,8 @@ Role Variables
 * user --> Username for the installation user
 * group --> Group name for the user
 * ansible_host --> host name of pc in which the playbook is post installing
+* syncthing_mountdep --> syncthing unit for device in systemd. To get unit list (archwiki)[https://wiki.archlinux.org/title/syncthing] (**User service: on mount**) `systemctl list-units -t mount` 
+
 
 License
 -------

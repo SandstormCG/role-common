@@ -1,0 +1,9 @@
+[Unit]
+Description=Syncthing
+BindsTo={{ syncthing_mountdep }}
+
+[Service]
+ExecStart=/usr/bin/syncthing
+
+[Install]
+WantedBy={{ syncthing_mountdep }}
